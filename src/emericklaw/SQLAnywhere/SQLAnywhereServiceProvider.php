@@ -30,7 +30,7 @@ class SQLAnywhereServiceProvider extends ServiceProvider
 
             $connector =  new SQLAnywhereConnector();
             $pdo = $connector->connect($config);
-            return new SQLAnywhereConnection($pdo, $config['database'], $config['prefix']);
+            return new SQLAnywhereConnection($pdo, $config['database'], $config['prefix'], $config);
         });
     }
 
