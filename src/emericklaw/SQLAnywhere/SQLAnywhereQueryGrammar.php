@@ -121,4 +121,17 @@ class SQLAnywhereQueryGrammar extends Grammar
             return 'rand()';
         }
     }
+
+    /**
+     * Compile an exists statement into SQL.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @return string
+     */
+    public function compileExists(Builder $query)
+    {
+        $select = $this->compileSelect($query);
+
+        return "select case when exists({$select}) then 1 else 0 end as {$this->wrap('exists')}";
+    }
 }
