@@ -26,11 +26,16 @@ class SQLAnywhereSchemaGrammar extends Grammar
     /**
      * Compile the query to determine if a table exists.
      *
+     * @param  string|null  $schema
+     * @param  string  $table
      * @return string
      */
-    public function compileTableExists()
+    public function compileTableExists($schema, $table)
     {
-        return 'SELECT * FROM sys.systab WHERE table_type_str = ?';
+        return sprintf(
+            "SELECT * FROM sys.systab WHERE table_name = %s",
+            $this->quoteString($table)
+        );
     }
 
     /**
