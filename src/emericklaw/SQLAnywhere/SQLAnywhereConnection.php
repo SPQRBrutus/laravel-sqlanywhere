@@ -109,7 +109,7 @@ class SQLAnywhereConnection extends Connection
      */
     protected function getDefaultQueryGrammar()
     {
-        return $this->withTablePrefix($this);
+        return new SQLAnywhereQueryGrammar($this);
     }
 
     /**
@@ -119,7 +119,7 @@ class SQLAnywhereConnection extends Connection
      */
     protected function getDefaultSchemaGrammar()
     {
-        return $this->withTablePrefix($this);
+        return new SQLAnywhereQueryGrammar($this);
     }
 
     /**
